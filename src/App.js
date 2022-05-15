@@ -1,15 +1,13 @@
 import React from 'react';
-import { data } from './data';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { Counter } from './features/counter/Counter';
+import Header from './components/header/Header';
 import './App.css';
 
 function App() {
-	return (
-		<div className='App'>
-			<h1>{data.length}</h1>
-		</div>
-	);
+	// main page
+
+	return <Header />;
 }
 
 export default App;
