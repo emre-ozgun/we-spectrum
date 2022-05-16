@@ -36,6 +36,7 @@ const Map = () => {
 
 	React.useEffect(() => {
 		setMapFormFields({ ...mapFormFields, formLat: lat, formLong: long });
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [lat, long]);
 
 	const handleSubmit = (e) => {

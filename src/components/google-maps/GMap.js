@@ -8,6 +8,7 @@ import {
 import { MAPS_URL } from '../../mapsKey';
 import { selectMapData, setCoords } from '../../features/mapData/mapDataSlice';
 import { useSelector, useDispatch } from 'react-redux';
+import { mapStyles } from '../../utils/mapStyles';
 
 const GMap = () => {
 	const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const GMap = () => {
 			defaultZoom={5.5}
 			defaultCenter={{ lat: lat, lng: long }}
 			onClick={handleCoordChange}
+			defaultOptions={{ styles: mapStyles }}
 		>
 			<Marker position={{ lat, lng: long }} />
 		</GoogleMap>
