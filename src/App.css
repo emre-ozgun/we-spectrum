@@ -13,3 +13,57 @@ a {
 button {
 	cursor: pointer;
 }
+
+section {
+	margin: 3rem 0;
+	background-color: #fff;
+}
+
+.form-control {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.form-control > label {
+	font-weight: 600;
+}
+.form-control > input {
+	padding: 0.4rem 0.25rem;
+}
+
+.form-control > input::placeholder {
+	font-family: inherit;
+	font-weight: 500;
+}
+
+form > button {
+	width: 100%;
+	padding: 0.5rem;
+	display: block;
+	text-transform: uppercase;
+	font-weight: 600;
+	letter-spacing: 1px;
+	background-color: #222;
+	color: #eee;
+	border: none;
+	outline: none;
+	border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	-o-border-radius: 2px;
+	transition: 0.33s all cubic-bezier(0.23, 1, 0.32, 1);
+	-webkit-transition: 0.33s all cubic-bezier(0.23, 1, 0.32, 1);
+	-moz-transition: 0.33s all cubic-bezier(0.23, 1, 0.32, 1);
+	-ms-transition: 0.33s all cubic-bezier(0.23, 1, 0.32, 1);
+	-o-transition: 0.33s all cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+form > button:hover {
+	opacity: 0.9;
+}
+
+select {
+	padding: 0.4rem 0.25rem;
+}
