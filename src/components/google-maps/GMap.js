@@ -1,13 +1,32 @@
 import React from 'react';
-import { GoogleMap, withScriptjs, withGoogleMap } from 'react-google-maps';
+import {
+	GoogleMap,
+	withScriptjs,
+	withGoogleMap,
+	Marker,
+} from 'react-google-maps';
 import { MAPS_URL } from '../../mapsKey';
+import { selectMapData, setCoords } from '../../features/mapData/mapDataSlice';
+import { useSelector, useDispatch } from 'react-redux';
 
 const GMap = () => {
+	const dispatch = useDispatch();
+	const { lat, long } = useSelector(selectMapData);
+
+	const handleCoordChange = (e) => {
+		const lat = e.latLng.lat();
+		const lng = e.latLng.lng();
+		dispatch(setCoords({ lat, lng }));
+	};
+
 	return (
 		<GoogleMap
 			defaultZoom={5.5}
-			defaultCenter={{ lat: 38.963745, lng: 35.24332 }}
-		/>
+			defaultCenter={{ lat: lat, lng: long }}
+			onClick={handleCoordChange}
+		>
+			<Marker position={{ lat, lng: long }} />
+		</GoogleMap>
 	);
 };
 

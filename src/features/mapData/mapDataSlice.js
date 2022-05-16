@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-	lat: 30,
-	long: 30,
+	lat: 38.963745,
+	long: 35.24332,
 };
 
 export const mapDataSlice = createSlice({
@@ -10,14 +10,14 @@ export const mapDataSlice = createSlice({
 	initialState,
 	// The `reducers` field lets us define reducers and generate associated actions
 	reducers: {
-		setMapData: (state, action) => {
-			const lat = action.payload.lat;
-			const long = action.payload.long;
+		setCoords: (state, action) => {
+			state.lat = action.payload.lat;
+			state.long = action.payload.lng;
 		},
 	},
 });
 
-export const { setMapData } = mapDataSlice.actions;
+export const { setCoords } = mapDataSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

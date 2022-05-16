@@ -34,6 +34,10 @@ const Map = () => {
 		}
 	}, [mapFormFields.formLat, mapFormFields.formLong, disabled]);
 
+	React.useEffect(() => {
+		setMapFormFields({ ...mapFormFields, formLat: lat, formLong: long });
+	}, [lat, long]);
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
