@@ -1,34 +1,46 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectMapData } from '../../features/mapData/mapDataSlice';
+import MapF from './GMap';
+
 import './Map.css';
 
 const Map = () => {
 	const { lat, long } = useSelector(selectMapData);
 
-	const [mapFormFields, setMapFormFields] = React.useState({
+	const initialMapFormFields = {
 		formLat: lat,
 		formLong: long,
 		formGML: 'DD-1',
 		formGC: 'ZA',
-	});
+	};
+
+	const [mapFormFields, setMapFormFields] = React.useState(
+		() => initialMapFormFields
+	);
 
 	const [disabled, setDisabled] = React.useState(true);
 
 	React.useEffect(() => {
 		if (!mapFormFields.formLat || !mapFormFields.formLong) {
 			setDisabled(true);
+			// } else if (
+			// 	mapFormFields.formGML.startsWith('s') ||
+			// 	mapFormFields.formGC.startsWith('s')
+			// ) {
+			setDisabled(true);
 		} else {
 			setDisabled(false);
 		}
-
-		console.log(disabled);
 	}, [mapFormFields.formLat, mapFormFields.formLong, disabled]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		console.log(mapFormFields);
+		// dispatch action here.
+
+		// clear fields
+		setMapFormFields(initialMapFormFields);
 	};
 
 	return (
@@ -108,7 +120,9 @@ const Map = () => {
 					</div>
 					<button disabled={disabled}>Proceed</button>
 				</form>
-				<div className='map'></div>
+				<div className='map'>
+					<MapF />
+				</div>
 			</div>
 		</section>
 	);
