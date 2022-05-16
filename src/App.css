@@ -26,10 +26,11 @@ section {
 }
 
 .form-control > label {
-	font-weight: 600;
+	font-weight: 500;
 }
 .form-control > input {
 	padding: 0.4rem 0.25rem;
+	font-weight: 800;
 }
 
 .form-control > input::placeholder {
@@ -66,4 +67,16 @@ form > button:hover {
 
 select {
 	padding: 0.4rem 0.25rem;
+	font-weight: 800;
+}
+
+button:disabled,
+button[disabled] {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+button:disabled:hover,
+button[disabled]:hover {
+	opacity: 0.5;
 }

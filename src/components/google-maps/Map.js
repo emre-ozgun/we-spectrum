@@ -4,25 +4,82 @@ import { selectMapData } from '../../features/mapData/mapDataSlice';
 import './Map.css';
 
 const Map = () => {
-	const defaultMapData = useSelector(selectMapData);
+	const { lat, long } = useSelector(selectMapData);
 
-	console.log(defaultMapData);
+	const [mapFormFields, setMapFormFields] = React.useState({
+		formLat: lat,
+		formLong: long,
+		formGML: 'DD-1',
+		formGC: 'ZA',
+	});
+
+	const [disabled, setDisabled] = React.useState(true);
+
+	React.useEffect(() => {
+		if (!mapFormFields.formLat || !mapFormFields.formLong) {
+			setDisabled(true);
+		} else {
+			setDisabled(false);
+		}
+
+		console.log(disabled);
+	}, [mapFormFields.formLat, mapFormFields.formLong, disabled]);
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		console.log(mapFormFields);
+	};
 
 	return (
 		<section className='section section-map'>
 			<div className='map-container'>
-				<form className='map-form'>
+				<form className='map-form' onSubmit={handleSubmit}>
 					<div className='form-control'>
-						<label htmlFor='lat'>Latitude</label>
-						<input type='text' id='lat' placeholder='Enter latitude...' />
+						<label htmlFor='formLat'>Latitude</label>
+						<input
+							type='number'
+							id='formLat'
+							name='formLat'
+							placeholder='Enter latitude...'
+							value={mapFormFields.formLat}
+							onChange={(e) =>
+								setMapFormFields({
+									...mapFormFields,
+									[e.target.name]: e.target.value,
+								})
+							}
+						/>
 					</div>
 					<div className='form-control'>
-						<label htmlFor='long'>Longitude</label>
-						<input type='text' id='long' placeholder='Enter latitude...' />
+						<label htmlFor='formLong'>Longitude</label>
+						<input
+							type='number'
+							id='formLong'
+							name='formLong'
+							placeholder='Enter longitude...'
+							value={mapFormFields.formLong}
+							onChange={(e) =>
+								setMapFormFields({
+									...mapFormFields,
+									[e.target.name]: e.target.value,
+								})
+							}
+						/>
 					</div>
 					<div className='form-control'>
-						<label htmlFor='gml'>Ground Motion Level</label>
-						<select name='gml' id='gml'>
+						<label htmlFor='formGML'>Ground Motion Level</label>
+						<select
+							name='formGML'
+							id='formGML'
+							value={mapFormFields.formGML}
+							onChange={(e) =>
+								setMapFormFields({
+									...mapFormFields,
+									[e.target.name]: e.target.value,
+								})
+							}
+						>
 							<option value='DD-1'>DD-1</option>
 							<option value='DD-2'>DD-2</option>
 							<option value='DD-3'>DD-3</option>
@@ -30,8 +87,18 @@ const Map = () => {
 						</select>
 					</div>
 					<div className='form-control'>
-						<label htmlFor='gc'>Ground Type</label>
-						<select name='gc' id='gc'>
+						<label htmlFor='formGC'>Ground Type</label>
+						<select
+							name='formGC'
+							id='formGC'
+							value={mapFormFields.formGC}
+							onChange={(e) =>
+								setMapFormFields({
+									...mapFormFields,
+									[e.target.name]: e.target.value,
+								})
+							}
+						>
 							<option value='ZA'>ZA</option>
 							<option value='ZB'>ZB</option>
 							<option value='ZC'>ZC</option>
@@ -39,7 +106,7 @@ const Map = () => {
 							<option value='ZE'>ZE</option>
 						</select>
 					</div>
-					<button>Proceed</button>
+					<button disabled={disabled}>Proceed</button>
 				</form>
 				<div className='map'></div>
 			</div>
