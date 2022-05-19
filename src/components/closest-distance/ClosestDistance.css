@@ -1,0 +1,77 @@
+.section-container {
+  background-color: #fff;
+  max-width: 978px;
+  padding: 0.5rem 1rem;
+  margin: 0 auto;
+}
+
+
+
+.section-title>h1 {
+  font-size: 1.5rem;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+
+.section-title__info {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.section-title__info>small {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.5;
+}
+
+.section-title__info>small>span {
+  color: red;
+}
+
+table {
+  padding: 1rem 0;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+
+th {
+  border-bottom: 1px solid rgba(47, 47, 47, 0.456);
+  padding: 0.5rem;
+}
+
+td {
+
+  border-bottom: 1px solid #eee;
+  padding: 0.5rem;
+}
+
+.data-misc>tr {
+  text-transform: uppercase;
+}
+
+
+.plot-btn {
+  padding: 0.4rem 0.6rem;
+  background-color: #222;
+  color: #eee;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  border-radius: 2px;
+}
+
+.plot-btn:hover {
+  opacity: 0.95;
+  box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.1);
+}

@@ -12,7 +12,7 @@ import { mapStyles } from '../../utils/mapStyles';
 
 const GMap = () => {
 	const dispatch = useDispatch();
-	const { lat, long } = useSelector(selectMapData);
+	const { lat, long, closestCoords } = useSelector(selectMapData);
 
 	const handleCoordChange = (e) => {
 		const lat = e.latLng.lat();
@@ -20,14 +20,23 @@ const GMap = () => {
 		dispatch(setCoords({ lat, lng }));
 	};
 
+
+
+	console.log('closest coords', closestCoords);
+
+
 	return (
 		<GoogleMap
-			defaultZoom={6}
+			defaultZoom={5.5}
 			defaultCenter={{ lat: lat, lng: long }}
 			onClick={handleCoordChange}
 			defaultOptions={{ styles: mapStyles }}
 		>
 			<Marker position={{ lat, lng: long }} />
+			{closestCoords.latClosest && closestCoords.lngClosest && (
+				<Marker
+					position={{ lat: closestCoords.latClosest, lng: closestCoords.lngClosest }} />
+			)}
 		</GoogleMap>
 	);
 };

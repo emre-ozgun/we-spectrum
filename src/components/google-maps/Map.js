@@ -7,7 +7,7 @@ import './Map.css';
 
 const Map = () => {
 	const dispatch = useDispatch();
-	const { lat, long } = useSelector(selectMapData);
+	const { lat, long, proceed } = useSelector(selectMapData);
 
 	const initialMapFormFields = {
 		formLat: lat,
@@ -41,6 +41,9 @@ const Map = () => {
 		e.preventDefault();
 
 		dispatch(setSpectrumData(mapFormFields))
+
+
+		// dispatch(clearCoords());
 		setMapFormFields(initialMapFormFields);
 	};
 
@@ -100,7 +103,7 @@ const Map = () => {
 						</select>
 					</div>
 					<div className='form-control'>
-						<label htmlFor='formGC'>Ground Type</label>
+						<label htmlFor='formGC'>Ground Class</label>
 						<select
 							name='formGC'
 							id='formGC'
@@ -119,7 +122,7 @@ const Map = () => {
 							<option value='ZE'>ZE</option>
 						</select>
 					</div>
-					<button disabled={disabled}>Proceed</button>
+					<button disabled={disabled || proceed}>Proceed</button>
 				</form>
 				<div className='map'>
 					<MapF />

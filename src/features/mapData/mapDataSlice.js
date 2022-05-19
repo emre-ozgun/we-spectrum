@@ -10,7 +10,11 @@ const initialState = {
 		formGC: null,
 	},
 	proceed: false,
-	closestDistance: null
+	plot: false,
+	closestCoords: {
+		latClosest: null,
+		lngClosest: null
+	}
 };
 
 export const mapDataSlice = createSlice({
@@ -62,11 +66,17 @@ export const mapDataSlice = createSlice({
 		setClosestDistance: (state, action) => {
 			const cDistance = action.payload.closestDistance;
 			state.closestDistance = cDistance
+		},
+
+		markClosestPointOnGoogleMaps: (state, action) => {
+			state.closestCoords.latClosest = action.payload.lat
+			state.closestCoords.lngClosest = action.payload.long
 		}
+
 	},
 });
 
-export const { setCoords, setSpectrumData, clearCoords, clearSpectrumData } = mapDataSlice.actions;
+export const { setCoords, setSpectrumData, clearCoords, clearSpectrumData, markClosestPointOnGoogleMaps } = mapDataSlice.actions;
 
 export const selectMapData = (state) => state.mapData;
 
