@@ -116,7 +116,7 @@ const ClosestDistance = () => {
 							<tr>
 								<th>Ground Motion Level</th>
 								<th>Ground Type</th>
-								<th>Closest Distance</th>
+								<th>Distance In Kms</th>
 							</tr>
 						</thead>
 
