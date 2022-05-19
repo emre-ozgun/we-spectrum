@@ -43,7 +43,8 @@ const GMap = () => {
 
 	return (
 		<GoogleMap
-			defaultZoom={5.5}
+			// defaultZoom={5.5}
+			zoom={Number(`${canDraw(lineBetween) ? 10 : 1}`)}
 			defaultCenter={{ lat: lat, lng: long }}
 			onClick={handleCoordChange}
 			defaultOptions={{ styles: mapStyles }}
@@ -56,6 +57,7 @@ const GMap = () => {
 
 			{canDraw(lineBetween) && (
 				<Polyline
+
 					path={lineBetween}
 					options={{
 						strokeColor: 'green',

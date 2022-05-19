@@ -4,6 +4,7 @@ import { calculateClosestDistance } from './haversineClosestDistance';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { selectMapData, markClosestPointOnGoogleMaps } from '../../features/mapData/mapDataSlice'
+import { distance } from './haversineClosestDistance';
 
 import './ClosestDistance.css';
 
@@ -15,9 +16,35 @@ const ClosestDistance = () => {
 	const [shouldMarkClosestOnGoogleMaps, setShouldMarkClosestOnGoogleMaps] = React.useState(false);
 	const [closestObj, setClosestObj] = React.useState(null);
 
-	const { proceed, formDataComposite } = useSelector(selectMapData);
+	const { proceed, formDataComposite, closestCoords } = useSelector(selectMapData);
 
 	const { formLat, formLong, formGML, formGC } = formDataComposite;
+
+
+
+	const lineBetween = [
+		{
+			lat: Number(closestCoords.latClosest),
+			lng: Number(closestCoords.lngClosest)
+		},
+		{
+			lat: Number(formDataComposite.formLat),
+			lng: Number(formDataComposite.formLong)
+		}
+	];
+
+	const canDraw = (c) => {
+		return c.every(v => v !== null) || null;
+	}
+
+
+
+	let distanceInKms;
+
+	if (canDraw) {
+		distanceInKms = (distance({ latitude: closestCoords.latClosest, longitude: closestCoords.lngClosest }, { latitude: formDataComposite.formLat, longitude: formDataComposite.formLong }) / 100).toFixed(3);
+	}
+
 
 
 	React.useEffect(() => {
@@ -89,6 +116,7 @@ const ClosestDistance = () => {
 							<tr>
 								<th>Ground Motion Level</th>
 								<th>Ground Type</th>
+								<th>Closest Distance</th>
 							</tr>
 						</thead>
 
@@ -97,6 +125,14 @@ const ClosestDistance = () => {
 							<tr>
 								<td>{formGML}</td>
 								<td>{formGC}</td>
+								{
+									canDraw(lineBetween) && (
+										<td>
+											{distanceInKms} km
+										</td>
+									)
+								}
+
 							</tr>
 						</tbody>
 

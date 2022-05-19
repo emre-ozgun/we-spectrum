@@ -35,7 +35,7 @@ export const calculateClosestDistance = (userCoords) => {
 }
 
 // Haversine formula to calculate the distance between two coordinates (using lat and long)
-function distance(position1, position2) {
+export function distance(position1, position2) {
 
 
 
