@@ -1,11 +1,12 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { selectMapData } from '../../features/mapData/mapDataSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectMapData, setSpectrumData } from '../../features/mapData/mapDataSlice';
 import MapF from './GMap';
 
 import './Map.css';
 
 const Map = () => {
+	const dispatch = useDispatch();
 	const { lat, long } = useSelector(selectMapData);
 
 	const initialMapFormFields = {
@@ -24,15 +25,12 @@ const Map = () => {
 	React.useEffect(() => {
 		if (!mapFormFields.formLat || !mapFormFields.formLong) {
 			setDisabled(true);
-			// } else if (
-			// 	mapFormFields.formGML.startsWith('s') ||
-			// 	mapFormFields.formGC.startsWith('s')
-			// ) {
 			setDisabled(true);
 		} else {
 			setDisabled(false);
 		}
 	}, [mapFormFields.formLat, mapFormFields.formLong, disabled]);
+
 
 	React.useEffect(() => {
 		setMapFormFields({ ...mapFormFields, formLat: lat, formLong: long });
@@ -42,9 +40,7 @@ const Map = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		// dispatch action here.
-
-		// clear fields
+		dispatch(setSpectrumData(mapFormFields))
 		setMapFormFields(initialMapFormFields);
 	};
 

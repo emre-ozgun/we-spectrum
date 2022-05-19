@@ -22,7 +22,7 @@ const GMap = () => {
 
 	return (
 		<GoogleMap
-			defaultZoom={5.5}
+			defaultZoom={6}
 			defaultCenter={{ lat: lat, lng: long }}
 			onClick={handleCoordChange}
 			defaultOptions={{ styles: mapStyles }}
