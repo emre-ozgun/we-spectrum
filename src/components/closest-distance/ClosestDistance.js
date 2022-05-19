@@ -9,24 +9,35 @@ import './ClosestDistance.css';
 
 const ClosestDistance = () => {
 
-	// const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
 
-
+	const [shouldMarkClosestOnGoogleMaps, setShouldMarkClosestOnGoogleMaps] = React.useState(false);
+	const [closestObj, setClosestObj] = React.useState(null);
 
 	const { proceed, formDataComposite } = useSelector(selectMapData);
 
 	const { formLat, formLong, formGML, formGC } = formDataComposite;
 
 
+	React.useEffect(() => {
+
+		setClosestObj(calculateClosestDistance({ lat: formLat, long: formLong }));
+		console.log('CLOSESTTTTTT', closestObj);
 
 
+		if (closestObj) {
+			dispatch(markClosestPointOnGoogleMaps({ lat: closestObj.latitude, long: closestObj.longitude }))
 
-	if (!proceed || !formLat || !formLong) {
+		}
+
+	}, [proceed, closestObj])
+
+
+	if (!proceed || !formLat || !formLong || !closestObj) {
 		return;
 	}
 
-	const closestObj = calculateClosestDistance({ lat: formLat, long: formLong });
 
 
 

@@ -69,8 +69,8 @@ export const mapDataSlice = createSlice({
 		},
 
 		markClosestPointOnGoogleMaps: (state, action) => {
-			state.closestCoords.latClosest = action.payload.lat
-			state.closestCoords.lngClosest = action.payload.long
+			state.closestCoords.latClosest = Number(action.payload.lat);
+			state.closestCoords.lngClosest = Number(action.payload.long);
 		}
 
 	},

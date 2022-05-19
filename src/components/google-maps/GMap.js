@@ -33,8 +33,9 @@ const GMap = () => {
 			defaultOptions={{ styles: mapStyles }}
 		>
 			<Marker position={{ lat, lng: long }} />
-			{closestCoords.latClosest && closestCoords.lngClosest && (
+			{closestCoords.latClosest && (
 				<Marker
+					opacity={0.5}
 					position={{ lat: closestCoords.latClosest, lng: closestCoords.lngClosest }} />
 			)}
 		</GoogleMap>
