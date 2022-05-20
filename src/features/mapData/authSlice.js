@@ -19,10 +19,6 @@ export const authSlice = createSlice({
   reducers: {
 
     submitCredentials: (state, action) => {
-
-      console.log('AUTH PAYLOAD ----', action.payload);
-
-
       const adminEmail = state.adminCredentials.email;
       const adminPassword = state.adminCredentials.password;
 
@@ -33,7 +29,8 @@ export const authSlice = createSlice({
         state.error = true;
       }
     },
-    resetCredentials: (state, action) => {
+
+    resetCredentials: (state, _) => {
       state.grantAccess = false;
       state.error = false;
       state.formCredentials = {

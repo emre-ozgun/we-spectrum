@@ -37,7 +37,7 @@ export const mapDataSlice = createSlice({
 		setSpectrumData: (state, action) => {
 			for (let [key, value] of Object.entries(action.payload)) {
 
-				console.log(key);
+
 
 
 				if (key === 'formLat' || key === 'formLong') {
@@ -48,7 +48,7 @@ export const mapDataSlice = createSlice({
 			}
 			state.proceed = true;
 
-			console.log('lajshfalhfa', current(state));
+
 
 		},
 

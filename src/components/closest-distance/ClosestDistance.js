@@ -12,8 +12,6 @@ const ClosestDistance = () => {
 
 	const dispatch = useDispatch();
 
-
-	const [shouldMarkClosestOnGoogleMaps, setShouldMarkClosestOnGoogleMaps] = React.useState(false);
 	const [closestObj, setClosestObj] = React.useState(null);
 
 	const { proceed, formDataComposite, closestCoords } = useSelector(selectMapData);
@@ -46,11 +44,10 @@ const ClosestDistance = () => {
 	}
 
 
-
 	React.useEffect(() => {
 
 		setClosestObj(calculateClosestDistance({ lat: formLat, long: formLong }));
-		console.log('CLOSESTTTTTT', closestObj);
+
 
 
 		if (closestObj) {
@@ -71,6 +68,7 @@ const ClosestDistance = () => {
 	return (
 		<section className='section section-closest-data'>
 			<div className="section-container">
+
 				<article className='section-title'>
 					<div className="section-title__info">
 						<h1>Closest distance</h1>
@@ -80,6 +78,7 @@ const ClosestDistance = () => {
 						<button className='plot-btn'>PLOT</button>
 					</div>
 				</article>
+
 				<article className='closest-data'>
 					<table className='data-table'>
 
@@ -103,23 +102,18 @@ const ClosestDistance = () => {
 								))}
 							</tr>
 						</tbody>
-
-
-
 					</table>
 				</article>
+
 				<article className='closest-data'>
 					<table className='data-table data-misc'>
 						<thead>
-
-
 							<tr>
 								<th>Ground Motion Level</th>
 								<th>Ground Type</th>
 								<th>Distance In Kms</th>
 							</tr>
 						</thead>
-
 						<tbody>
 
 							<tr>
@@ -132,7 +126,6 @@ const ClosestDistance = () => {
 										</td>
 									)
 								}
-
 							</tr>
 						</tbody>
 

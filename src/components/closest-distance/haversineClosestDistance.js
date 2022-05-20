@@ -6,9 +6,6 @@ let closestDistance = Infinity;
 
 
 export const calculateClosestDistance = (userCoords) => {
-
-  console.log('calculating');
-
   const { lat, long } = userCoords;
 
 

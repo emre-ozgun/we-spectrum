@@ -33,3 +33,9 @@
   font-weight: 800;
   counter-reset: red;
 }
+
+.form-title {
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  opacity: 0.75;
+}

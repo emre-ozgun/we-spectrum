@@ -17,6 +17,14 @@ const LoginForm = () => {
     password: '',
   })
 
+  const inputRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (inputRef && inputRef.current) {
+      inputRef.current.focus();
+    }
+
+  }, [])
 
   React.useEffect(() => {
 
@@ -28,16 +36,20 @@ const LoginForm = () => {
 
   }, [credentials.email, credentials.password])
 
-
   React.useEffect(() => {
+    let timeout;
 
     if (error) {
-      const timeout = setTimeout(() => {
-        dispatch(resetCredentials());
-      }, 2000);
-
-      clearTimeout(timeout)
+      timeout = setTimeout(() => {
+        dispatch(resetCredentials())
+      }, 4000);
     }
+
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout)
+      }
+    };
 
   }, [error, dispatch])
 
@@ -57,6 +69,7 @@ const LoginForm = () => {
     <section className='section section-auth'>
 
       <form className='form' onSubmit={handleFormSubmit}>
+        <h1 className='form-title'>WESPECTRUM | LOGIN</h1>
         {error && (
           <div className="form-control">
             <label className='form-msg'>Invalid credentials use mock credentials below</label>
@@ -68,6 +81,7 @@ const LoginForm = () => {
         <div className="form-control">
           <label htmlFor="email">Email</label>
           <input
+            ref={inputRef}
             value={credentials.email}
             onChange={(e) => setCredentials({ ...credentials, [e.target.name]: e.target.value })}
             type="email" id='email' name='email' placeholder='Your email...' />
