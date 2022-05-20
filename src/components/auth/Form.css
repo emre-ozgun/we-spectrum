@@ -1,0 +1,35 @@
+.section-auth {
+  max-width: 320px;
+  margin: 4rem auto;
+}
+
+.form {
+  padding: 1rem;
+  border-radius: 2px;
+  border: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.btn-submit {
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.form-msg {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 0, 0, 0.596);
+}
+
+.form-msg.c {
+  font-weight: 800;
+  counter-reset: red;
+}
